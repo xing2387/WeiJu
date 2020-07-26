@@ -54,30 +54,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ad" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp">
-
-                    <com.google.android.gms.ads.AdView
-                        android:id="@+id/ad_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        ads:adSize="LARGE_BANNER"
-                        ads:adUnitId="@string/admob_banner_id" />
-
-                    <ProgressBar
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        isGone="@{isAdLoaded}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:indeterminate="true" />
-
-                </com.google.android.material.card.MaterialCardView>
-
                 <TextView
                     style="@style/CardTitleStyle"
                     android:layout_width="wrap_content"

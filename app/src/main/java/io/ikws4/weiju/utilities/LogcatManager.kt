@@ -20,7 +20,7 @@ object LogcatManager {
             .setPositiveButton(android.R.string.copy) { _, _ ->
                 val cbm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 val clipData = ClipData.newPlainText("LogcatManager", message)
-                cbm.primaryClip = clipData
+                cbm.setPrimaryClip(clipData)
             }.show()
         saveToFile(context, t)
     }
@@ -33,7 +33,7 @@ object LogcatManager {
             .setPositiveButton(android.R.string.copy) { _, _ ->
                 val cbm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 val clipData = ClipData.newPlainText("LogcatManager", s)
-                cbm.primaryClip = clipData
+                cbm.setPrimaryClip(clipData)
             }
         if (isShowClearButton) {
             builder.setNeutralButton(R.string.clear) { _, _ ->

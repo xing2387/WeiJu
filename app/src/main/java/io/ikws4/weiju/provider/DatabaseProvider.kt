@@ -58,7 +58,7 @@ class DatabaseProvider : ContentProvider() {
         }
     }
 
-    override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>, sortOrder: String?): Cursor? {
+    override fun query(uri: Uri, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor? {
         when (uriMatcher.match(uri)) {
             TRANSLATION_INFO_QUERY_RESULT -> {
                 val query = uri.lastPathSegment ?: ""
@@ -66,9 +66,9 @@ class DatabaseProvider : ContentProvider() {
                 val translationDao = AppDatabase.getInstance(context).translationInfoDao()
                 val cursor = translationDao.get(
                     query = query,
-                    pkgName = selectionArgs[0],
-                    from = selectionArgs[1],
-                    to = selectionArgs[2]
+                    pkgName = selectionArgs?.get(0) ?: "",
+                    from = selectionArgs?.get(1) ?: "",
+                    to = selectionArgs?.get(2) ?: ""
                 )
                 cursor.setNotificationUri(context.contentResolver, uri)
                 return cursor
@@ -80,6 +80,9 @@ class DatabaseProvider : ContentProvider() {
             else -> throw IllegalAccessException("Unknown URI: $uri")
         }
     }
+
+//    override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>, sortOrder: String?): Cursor? {
+//    }
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<String>?): Int {
         return when (uriMatcher.match(uri)) {

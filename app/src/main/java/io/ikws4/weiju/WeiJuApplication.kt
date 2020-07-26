@@ -9,7 +9,6 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.google.android.gms.ads.MobileAds
 import io.ikws4.weiju.servers.ApkServer
 import io.ikws4.weiju.utilities.WEIJU_SP
 import io.ikws4.weiju.worker.CheckUpdateWorker
@@ -21,7 +20,6 @@ class WeiJuApplication : Application() {
         super.onCreate()
         val intent = Intent(this, ApkServer::class.java)
         ContextCompat.startForegroundService(this, intent)
-        MobileAds.initialize(this)
         startWorkers()
         themeChangeListener()
     }

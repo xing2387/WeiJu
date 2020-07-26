@@ -12,8 +12,6 @@ import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
 import com.google.android.material.snackbar.Snackbar
 import io.ikws4.weiju.R
 import io.ikws4.weiju.databinding.FragmentCategoryHomeBinding
@@ -43,37 +41,18 @@ class CategoryHomeFragment : Fragment() {
         refreshIconColor()
         setupNavigationDirection()
         setupFab()
-        setupAd()
         return binding.root
-    }
-
-    private fun setupAd() {
-        val adRequest = AdRequest.Builder()
-            .addTestDevice(TEST_DEVICE_ID)
-            .build()
-        with(binding.adView) {
-            loadAd(adRequest)
-            adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    super.onAdLoaded()
-                    binding.isAdLoaded = !isLoading
-                }
-            }
-        }
     }
 
     override fun onPause() {
         super.onPause()
-        binding.adView.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        binding.adView.resume()
     }
 
     override fun onDestroy() {
-        binding.adView.destroy()
         super.onDestroy()
     }
 

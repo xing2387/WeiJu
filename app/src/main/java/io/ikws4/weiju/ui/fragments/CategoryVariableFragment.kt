@@ -37,12 +37,13 @@ class CategoryVariableFragment : PreferenceFragmentCompat() {
         preferenceManager.sharedPreferencesName = args.pkgName
         setPreferencesFromResource(R.xml.variable_preference, rootKey)
 
+        val context = requireContext()
         // TODO: 逻辑待优化
-        val telephonyManager = context!!.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         var imei = "error: not permission"
         var imsi = "error: not permission"
         try {
-            if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
                 imei = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     telephonyManager.imei ?: "error: failure"
                 } else {
@@ -51,7 +52,7 @@ class CategoryVariableFragment : PreferenceFragmentCompat() {
                 imsi = telephonyManager.subscriberId ?: "error: failure"
             }
         } catch (ex: Exception) {
-            LogcatManager.saveToFile(context!!, ex, true)
+            LogcatManager.saveToFile(context, ex, true)
         }
 
         findPreference<EditTextPreference>("variable_model")!!.apply {
@@ -106,7 +107,7 @@ class CategoryVariableFragment : PreferenceFragmentCompat() {
             positiveButton(android.R.string.copy) {
                 val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 val clip = ClipData.newPlainText("variable config", configStr)
-                clipboard.primaryClip = clip
+                clipboard.setPrimaryClip(clip)
                 Toast.makeText(requireContext(), R.string.copy_success, Toast.LENGTH_SHORT).show()
             }
         }
@@ -132,8 +133,8 @@ class CategoryVariableFragment : PreferenceFragmentCompat() {
                         findPreference<EditTextPreference>("variable_imei")!!.text = imei
                         findPreference<EditTextPreference>("variable_imsi")!!.text = imsi
                     }
-                }catch (e:Exception){
-                    Toast.makeText(requireContext(),R.string.import_import_error,Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), R.string.import_import_error, Toast.LENGTH_SHORT).show()
                 }
 
             }
