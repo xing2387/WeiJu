@@ -18,29 +18,29 @@ class WeiJuApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val intent = Intent(this, ApkServer::class.java)
-        ContextCompat.startForegroundService(this, intent)
-        startWorkers()
+//        val intent = Intent(this, ApkServer::class.java)
+//        ContextCompat.startForegroundService(this, intent)
+//        startWorkers()
         themeChangeListener()
     }
 
-    private fun startWorkers() {
-        val workManager = WorkManager.getInstance(applicationContext)
-
-        val checkUpdateWorkerConstraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .build()
-
-        val checkUpdateWorker = OneTimeWorkRequestBuilder<CheckUpdateWorker>()
-            .setConstraints(checkUpdateWorkerConstraints)
-            .build()
-
-        val updateAppDatabaseWorker = OneTimeWorkRequestBuilder<UpdateAppDatabaseWorker>()
-            .build()
-
-        workManager.enqueue(updateAppDatabaseWorker)
-        workManager.enqueue(checkUpdateWorker)
-    }
+//    private fun startWorkers() {
+//        val workManager = WorkManager.getInstance(applicationContext)
+//
+//        val checkUpdateWorkerConstraints = Constraints.Builder()
+//            .setRequiredNetworkType(NetworkType.CONNECTED)
+//            .build()
+//
+//        val checkUpdateWorker = OneTimeWorkRequestBuilder<CheckUpdateWorker>()
+//            .setConstraints(checkUpdateWorkerConstraints)
+//            .build()
+//
+//        val updateAppDatabaseWorker = OneTimeWorkRequestBuilder<UpdateAppDatabaseWorker>()
+//            .build()
+//
+//        workManager.enqueue(updateAppDatabaseWorker)
+//        workManager.enqueue(checkUpdateWorker)
+//    }
 
     private fun themeChangeListener() {
         val sp = getSharedPreferences(WEIJU_SP, Context.MODE_PRIVATE)

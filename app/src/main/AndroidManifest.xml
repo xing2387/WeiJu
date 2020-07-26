@@ -57,29 +57,29 @@
             android:label="@string/translation_editor"
             android:launchMode="singleTask" />
 
-        <service
-            android:name=".servers.ApkServer"
-            android:enabled="true" />
+<!--        <service-->
+<!--            android:name=".servers.ApkServer"-->
+<!--            android:enabled="true" />-->
 
-        <receiver
-            android:name=".broadcasts.BootReceiver"
-            android:enabled="true"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </receiver>
+<!--        <receiver-->
+<!--            android:name=".broadcasts.BootReceiver"-->
+<!--            android:enabled="true"-->
+<!--            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
-        <receiver
-            android:name=".broadcasts.ApkReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
+<!--        <receiver-->
+<!--            android:name=".broadcasts.ApkReceiver"-->
+<!--            android:enabled="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.PACKAGE_ADDED" />-->
+<!--                <action android:name="android.intent.action.PACKAGE_FULLY_REMOVED" />-->
+<!--                <data android:scheme="package" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
         <provider
             android:name=".provider.SharedPreferencesProvider"
