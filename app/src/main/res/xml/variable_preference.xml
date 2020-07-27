@@ -37,19 +37,34 @@
         android:summary="ro.build.version.release=%s"
         android:title="@string/pref_android_version" />
 
-    <io.ikws4.weiju.ui.preferences.EditTextPreference
-        android:dependency="is_enable_variable"
-        android:inputType="number"
-        android:key="variable_longitude"
-        android:summary="%s"
-        android:title="@string/pref_longitude" />
+    <PreferenceCategory android:title="location">
 
-    <io.ikws4.weiju.ui.preferences.EditTextPreference
-        android:dependency="is_enable_variable"
-        android:inputType="number"
-        android:key="variable_latitude"
-        android:summary="%s"
-        android:title="@string/pref_latitude" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="is_enable_variable"
+            android:key="is_location_baidu"
+            android:title="百度" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="is_enable_variable"
+            android:key="is_location_tx"
+            android:title="腾讯" />
+
+        <io.ikws4.weiju.ui.preferences.EditTextPreference
+            android:dependency="is_enable_variable"
+            android:inputType="number"
+            android:key="variable_longitude"
+            android:summary="%s"
+            android:title="@string/pref_longitude" />
+
+        <io.ikws4.weiju.ui.preferences.EditTextPreference
+            android:dependency="is_enable_variable"
+            android:inputType="number"
+            android:key="variable_latitude"
+            android:summary="%s"
+            android:title="@string/pref_latitude" />
+    </PreferenceCategory>
 
     <io.ikws4.weiju.ui.preferences.EditTextPreference
         android:dependency="is_enable_variable"
