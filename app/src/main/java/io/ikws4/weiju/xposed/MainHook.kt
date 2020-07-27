@@ -16,6 +16,7 @@ import io.ikws4.weiju.utilities.WEIJU_SP
 import io.ikws4.weiju.utilities.XSPUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+
 @Keep
 @ExperimentalCoroutinesApi
 class MainHook : IXposedHookLoadPackage {
@@ -37,7 +38,7 @@ class MainHook : IXposedHookLoadPackage {
                 NavBarHook(sp)
                 ScreenHook(sp)
                 TranslationHook(application, pkgName)
-                VariableHook(sp,lpparam.classLoader)
+                VariableHook(sp, lpparam.classLoader)
             }
             isRunning = true
         }
